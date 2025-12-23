@@ -10,13 +10,13 @@ app.use(cors(coreOptions));
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("Node js Server is running...");
-});
+// app.get("/", (req, res) => {
+//   res.send("Node js Server is running...");
+// });
 
-app.get("/about", (req, res) => {
-  res.send("This is the about page of the Node js server.");
-});
+// app.get("/about", (req, res) => {
+//   res.send("This is the about page of the Node js server.");
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
