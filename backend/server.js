@@ -1,7 +1,15 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const connectDB = require("./config/db");
+const colors = require("colors");
+const userRoutes = require("./routes/userRoutes");
+const { notFound, errorHandler } = require("./Middlewares/errorMiddleware");
+
+connectDB();
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const coreOptions = {
   origin: ["http://localhost:5173"],
@@ -18,6 +26,10 @@ const PORT = process.env.PORT || 5000;
 //   res.send("This is the about page of the Node js server.");
 // });
 
+app.use("/api/user", userRoutes);
+app.use(notFound);
+app.use(errorHandler);
+
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+  console.log(`Server is running on ${PORT}`.yellow.bold);
 });
